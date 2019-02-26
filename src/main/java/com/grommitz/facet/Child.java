@@ -21,9 +21,9 @@ public class Child {
 	Parent parent;
 
 	@Field(analyze = Analyze.NO)
-	@Facet
-	public long getParentId() {
-		return parent.getId();
+	@Facet(encoding = FacetEncodingType.STRING)
+	public Long getParentId() {
+		return parent != null ? parent.getId() : null;
 	}
 
 	public Child() {}

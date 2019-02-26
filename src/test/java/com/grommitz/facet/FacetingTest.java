@@ -66,9 +66,9 @@ public class FacetingTest {
 				.name("facetRequest")
 				.onField("parentId")
 				.discrete()
-				//.orderedBy(FacetSortOrder.COUNT_DESC)
-				//.includeZeroCounts(false)
-				//.maxFacetCount(3)
+				.orderedBy(FacetSortOrder.COUNT_DESC)
+				.includeZeroCounts(false)
+				.maxFacetCount(10)
 				.createFacetingRequest();
 
 		FacetManager facetManager = fullTextQuery.getFacetManager();
