@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence
+    xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+		http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+    version="2.1">
+
+    <persistence-unit name="TestDb" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.connectionCollation" value="utf8mb4_unicode_ci" />
+            <property name="hibernate.connection.useUnicode" value="true" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://10.19.83.11/facetdb" />
+            <property name="hibernate.connection.username" value="root" />
+            <property name="hibernate.connection.password" value="chubchub" />
+
+            <property name="hibernate.current_session_context_class" value="thread" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.format_sql" value="false" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="hibernate.id.new_generator_mappings" value="false" />
+
+            <property name="hibernate.search.default.directory_provider" value="local-heap" />
+            <property name="hibernate.search.lucene_version" value="LUCENE_55" />
+            <!--<property name="hibernate.search.default.indexBase" value="/var/lucene5/test_indexes" />-->
+            <!--<property name="hibernate.search.analyzer" value="com.envisional.de2.search.DefaultAnalyser" />-->
+        </properties>
+    </persistence-unit>
+
+</persistence>
+
