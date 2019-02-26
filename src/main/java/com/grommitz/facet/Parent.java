@@ -14,7 +14,6 @@ public class Parent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Field(name = "parentId", analyze = Analyze.NO)
-	@Facet
 	long id;
 
 	@OneToMany(mappedBy="parent", cascade={CascadeType.ALL})

@@ -64,11 +64,11 @@ public class FacetingTest {
 
 		FacetingRequest facetingRequest = builder.facet()
 				.name("facetRequest")
-				.onField("parent.id")
+				.onField("parentId")
 				.discrete()
-				.orderedBy(FacetSortOrder.COUNT_DESC)
-				.includeZeroCounts(false)
-				.maxFacetCount(3)
+				//.orderedBy(FacetSortOrder.COUNT_DESC)
+				//.includeZeroCounts(false)
+				//.maxFacetCount(3)
 				.createFacetingRequest();
 
 		FacetManager facetManager = fullTextQuery.getFacetManager();

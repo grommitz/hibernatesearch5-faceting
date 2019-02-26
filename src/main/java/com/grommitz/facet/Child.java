@@ -20,6 +20,12 @@ public class Child {
 	@IndexedEmbedded(includeEmbeddedObjectId = true)
 	Parent parent;
 
+	@Field(analyze = Analyze.NO)
+	@Facet
+	public long getParentId() {
+		return parent.getId();
+	}
+
 	public Child() {}
 
 	public Child(String name) {
