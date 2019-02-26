@@ -15,3 +15,14 @@ of faceting on an embedded entity.
 
 See https://stackoverflow.com/questions/54871971/how-to-use-facet-with-embedded-entities
 
+
+
+
+## Database setup (MySQL)
+
+    create database facetdb;
+    create user 'hello'@'localhost';
+    grant all privileges on facetdb.* to 'hello'@'localhost' identified by 'hello';
+    
+    
+    
