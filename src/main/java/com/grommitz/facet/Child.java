@@ -20,12 +20,6 @@ public class Child {
 	@IndexedEmbedded(includeEmbeddedObjectId = true)
 	Parent parent;
 
-	@Field(analyze = Analyze.NO)
-	@Facet(encoding = FacetEncodingType.STRING)
-	public Long getParentId() {
-		return parent != null ? parent.getId() : null;
-	}
-
 	public Child() {}
 
 	public Child(String name) {

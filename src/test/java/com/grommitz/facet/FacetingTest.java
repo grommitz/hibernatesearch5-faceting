@@ -64,7 +64,7 @@ public class FacetingTest {
 
 		FacetingRequest facetingRequest = builder.facet()
 				.name("facetRequest")
-				.onField("parentId")
+				.onField("parent.parentId")
 				.discrete()
 				.orderedBy(FacetSortOrder.COUNT_DESC)
 				.includeZeroCounts(false)
