@@ -2,6 +2,7 @@ package com.grommitz.facet;
 
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Facet;
+import org.hibernate.search.annotations.FacetEncodingType;
 import org.hibernate.search.annotations.Field;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Parent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Field(name = "parentId", analyze = Analyze.NO)
+	@Facet(forField = "parentId", encoding = FacetEncodingType.STRING)
 	long id;
 
 	@OneToMany(mappedBy="parent", cascade={CascadeType.ALL})

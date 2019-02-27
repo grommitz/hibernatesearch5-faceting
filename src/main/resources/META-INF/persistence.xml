@@ -9,15 +9,13 @@
     <persistence-unit name="TestDb" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.connectionCollation" value="utf8mb4_unicode_ci" />
-            <property name="hibernate.connection.useUnicode" value="true" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/facetdb" />
-            <property name="hibernate.connection.username" value="hello" />
-            <property name="hibernate.connection.password" value="hello" />
+            <property name="hibernate.connection.driver_class" value="org.h2.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1" />
+            <property name="hibernate.connection.username" value="sa" />
+            <property name="hibernate.connection.password" value="sa" />
 
             <property name="hibernate.current_session_context_class" value="thread" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
             <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.format_sql" value="false" />
             <property name="hibernate.hbm2ddl.auto" value="create" />
