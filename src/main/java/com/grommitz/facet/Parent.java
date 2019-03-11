@@ -24,10 +24,15 @@ public class Parent {
 	@Field(name = "parentName")
 	private String name;
 
+	@Field(analyze = Analyze.NO)
+	@Facet(encoding = FacetEncodingType.STRING)
+	private Gender gender;
+
 	public Parent() {}
 
-	public Parent(String name) {
+	public Parent(String name, Gender gender) {
 		this.name = name;
+		this.gender = gender;
 	}
 
 	public long getId() {
@@ -44,6 +49,14 @@ public class Parent {
 
 	public void setChildren(List<Child> children) {
 		this.children = children;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	public void addChild(Child c) {

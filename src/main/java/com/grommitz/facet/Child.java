@@ -20,10 +20,15 @@ public class Child {
 	@IndexedEmbedded(includeEmbeddedObjectId = true)
 	Parent parent;
 
+	@Field(analyze = Analyze.NO)
+	@Facet(encoding = FacetEncodingType.STRING)
+	private Gender gender;
+
 	public Child() {}
 
-	public Child(String name) {
+	public Child(String name, Gender gender) {
 		this.name = name;
+		this.gender = gender;
 	}
 
 	public long getId() {
@@ -52,6 +57,16 @@ public class Child {
 
 	@Override
 	public String toString() {
-		return name;
+		return String.format("%s (%s)", name, gender.getDescription());
 	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+
 }

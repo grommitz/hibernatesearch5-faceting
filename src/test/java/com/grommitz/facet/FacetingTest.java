@@ -15,6 +15,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.List;
 
+import static com.grommitz.facet.Gender.FEMALE;
+import static com.grommitz.facet.Gender.MALE;
+import static com.grommitz.facet.Gender.OTHER;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -51,6 +54,7 @@ public class FacetingTest {
 
 		assertThat(result.size(), is(1));
 	}
+
 	@Test
 	void groupChildrenByParent() {
 
@@ -84,23 +88,55 @@ public class FacetingTest {
 		assertThat(facets.size(), is(2));
 	}
 
+	@Test
+	void groupChildrenByGender() {
+		QueryBuilder builder = ftem.getSearchFactory()
+				.buildQueryBuilder().forEntity(Child.class).get();
+
+		org.apache.lucene.search.Query luceneQuery =
+				builder.all().createQuery();
+
+		FullTextQuery fullTextQuery = ftem.createFullTextQuery(luceneQuery);
+
+		FacetingRequest facetingRequest = builder.facet()
+				.name("facetRequest")
+				.onField("gender")
+				.discrete()
+				.orderedBy(FacetSortOrder.COUNT_DESC)
+				.includeZeroCounts(true)
+				.maxFacetCount(10)
+				.createFacetingRequest();
+
+		FacetManager facetManager = fullTextQuery.getFacetManager();
+		facetManager.enableFaceting(facetingRequest);
+
+		List<Child> result = fullTextQuery.getResultList();
+		result.forEach(System.out::println);
+
+		List<Facet> facets = facetManager.getFacets("facetRequest");
+		facets.forEach(System.out::println);
+
+		assertThat(result.size(), is(5));
+		assertThat(facets.size(), is(3));
+	}
+
 	private void createFixtureData() {
 
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 
-		Parent p1 = new Parent("James");
-		Child c1 = new Child("Jon");
-		Child c2 = new Child("Jack");
+		Parent p1 = new Parent("James", MALE);
+		Child c1 = new Child("Jon", MALE);
+		Child c2 = new Child("Jack", MALE);
 
 		p1.addChild(c1);
 		p1.addChild(c2);
 		em.persist(p1);
 
-		Parent p2 = new Parent("Martha");
-		Child c3 = new Child("Marianne");
-		Child c4 = new Child("Marley");
-		Child c5 = new Child("Mary");
+		Parent p2 = new Parent("Martha", FEMALE);
+		Child c3 = new Child("Marianne", FEMALE);
+		Child c4 = new Child("Marley", OTHER);
+		Child c5 = new Child("Mary", FEMALE);
 
 		p2.addChild(c3);
 		p2.addChild(c4);
@@ -108,7 +144,7 @@ public class FacetingTest {
 
 		em.persist(p2);
 
-		Parent p3 = new Parent("Gary");
+		Parent p3 = new Parent("Gary", MALE);
 
 		em.persist(p3);
 
