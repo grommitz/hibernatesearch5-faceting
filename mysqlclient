@@ -1,0 +1,6 @@
+#!/bin/bash
+docker rm mysqlclient
+docker run -it --net elastic_net \
+  --name mysqlclient \
+  --rm mysql \
+  mysql -hmysql -uroot -phelloroot
